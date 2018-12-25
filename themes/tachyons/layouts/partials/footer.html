@@ -2,17 +2,36 @@
         <small class="f5 mw7 db center phm lh-copy">
           <nav>
               <ul class="list pln">
-                  <li class="dib prm"><a href="https://www.github.com"><span class="js-geomicon geomicon blue" data-icon="github"></span></a></li>
-                  <li class="dib prm"><a href="https://www.twitter.com"><span class="js-geomicon geomicon blue" data-icon="twitter"></span></a></li>
+                  <li class="dib prm"><a href="https://www.github.com/krgn/noiselab.party"><span class="js-geomicon geomicon blue" data-icon="github"></span></a></li>
+                  <li class="dib prm"><a href="https://www.twitter.com/"><span class="js-geomicon geomicon blue" data-icon="twitter"></span></a></li>
               </ul>
               </nav>
-              Copyright-  2015
+              Copyright-  2018
         </small>
     </footer>
-    <script src="http://d2v52k3cl9vedd.cloudfront.net/geomicons/0.2.0/geomicons.min.js.gz"></script>
+    <script src="https://d2v52k3cl9vedd.cloudfront.net/geomicons/0.2.0/geomicons.min.js.gz"></script>
     <script>
         var icons = document.querySelectorAll('.geomicon');
         Geomicons.inject(icons);
+
+        function renderInfo(info) {
+          if(!info.icestats.source)
+            return;
+
+          let current = info.icestats.source.listeners;
+          let peak = info.icestats.source.listener_peak;
+
+          document.getElementById("listener-count").innerText = current;
+          document.getElementById("peak-count").innerText = peak;
+        }
+
+        function updateInfo() {
+          return fetch("/stats")
+            .then(resp => resp.json())
+            .then(json => renderInfo(json))
+        }
+
+        setInterval(updateInfo, 5000)
     </script>
   </body>
 </html>
