@@ -14,3 +14,9 @@ description = "Noise Laboratory at 35c3"
 keywords = "noise, music, art, 35c3"
 
 [[menu.main]]
+
+[params.social]
+twitter = "noiselab_live"
+
+[params.extra]
+copyright = "2018 copyleft"
