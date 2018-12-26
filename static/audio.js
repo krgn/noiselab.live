@@ -4,7 +4,7 @@ var audioPlayer = document.querySelector('.green-audio-player');
 var playPause = audioPlayer.querySelector('#playPause');
 var playpauseBtn = audioPlayer.querySelector('.play-pause-btn');
 var loading = audioPlayer.querySelector('.loading');
-var progress = audioPlayer.querySelector('.progress');
+// var progress = audioPlayer.querySelector('.progress');
 var sliders = audioPlayer.querySelectorAll('.slider');
 var volumeBtn = audioPlayer.querySelector('.volume-btn');
 var volumeControls = audioPlayer.querySelector('.volume-controls');
@@ -33,11 +33,11 @@ window.addEventListener('mousedown', function (event) {
 });
 
 playpauseBtn.addEventListener('click', togglePlay);
-player.addEventListener('timeupdate', updateProgress);
+// player.addEventListener('timeupdate', updateProgress);
 player.addEventListener('volumechange', updateVolume);
-player.addEventListener('loadedmetadata', function () {
-  totalTime.textContent = formatTime(player.duration);
-});
+// player.addEventListener('loadedmetadata', function () {
+//   totalTime.textContent = formatTime(player.duration);
+// });
 player.addEventListener('canplay', makePlay);
 player.addEventListener('ended', function () {
   playPause.attributes.d.value = "M18 12L0 24V0";
@@ -83,13 +83,12 @@ function inRange(event) {
   return true;
 }
 
-function updateProgress() {
-  var current = player.currentTime;
-  var percent = current / player.duration * 100;
-  progress.style.width = percent + '%';
-
-  currentTime.textContent = formatTime(current);
-}
+// function updateProgress() {
+//   var current = player.currentTime;
+//   var percent = current / player.duration * 100;
+//   progress.style.width = percent + '%';
+//   currentTime.textContent = formatTime(current);
+// }
 
 function updateVolume() {
   volumeProgress.style.height = player.volume * 100 + '%';
