@@ -1,4 +1,7 @@
 baseURL = "https://noiselab.live/"
 languageCode = "en-us"
 title = "NoiseLab"
-theme = "tachyons"
+theme = "hallo"
+
+[Author]
+    name = "NoiseLab"

@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+<main>
+    <div class="column left">
+        <img src="images/portrait.jpg" width="300" height="300" class="portrait" alt="Portrait" />
+    </div>
+    <div class="column right">
+        <h1>@ 35c3</h1>
+        <h2 id="listener-count">0 Listeners (0 Peak)</h2>
+        <p>{{- partial "introduction.html" . -}}</p>
+
+        <div class="links">
+            {{- range .Site.Params.links -}}
+                <a href="{{ .url }}" title="{{ .title }}">
+                    <span class="{{ .iconset | default "fab" }} fa-{{ .icon }}"></span>
+                </a>
+            {{- end -}}
+        </div>
+    </div>
+    <script>
+     function renderInfo(info) {
+       if(!info.icestats.source)
+         return;
+
+       let current = info.icestats.source.listeners;
+       let peak = info.icestats.source.listener_peak;
+
+       document.getElementById("listener-count").innerText = current + " Listeners (" + peak + " Peak)";
+     }
+
+     function updateInfo() {
+       return fetch("/stats")
+         .then(resp => resp.json())
+         .then(json => renderInfo(json))
+     }
+
+     updateInfo()
+     setInterval(updateInfo, 2000)
+    </script>
+</main>
+
+{{ end }}
